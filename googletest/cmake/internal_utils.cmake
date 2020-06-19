@@ -21,6 +21,20 @@ endif (POLICY CMP0054)
 # This must be a macro(), as inside a function string() can only
 # update variables in the function scope.
 macro(fix_default_compiler_settings_)
+message(STATUS "using riscv")
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR riscv)
+set(CMAKE_CROSSCOMPILING 1)
+set(CMAKE_CXX_COMPILER "/opt/riscv/bin/riscv64-unknown-linux-gnu-g++")
+set(CMAKE_C_COMPILER "/opt/riscv/bin/riscv64-unknown-linux-gnu-gcc")
+set(CMAKE_ASM_COMPILER "/opt/riscv/bin/riscv64-unknown-linux-gnu-gcc")
+set(CMAKE_LINKER "/opt/riscv/bin/riscv64-unknown-linux-gnu-ld")
+set(CMAKE_AR "/opt/riscv/bin/riscv64-unknown-linux-gnu-ar")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
   if (MSVC)
     # For MSVC, CMake sets certain flags to defaults we want to override.
     # This replacement code is taken from sample in the CMake Wiki at
